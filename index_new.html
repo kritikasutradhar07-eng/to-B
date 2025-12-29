@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Paul ⚽💙</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #06182e, #000814);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+}
+
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+#start {
+  display: flex;
+}
+
+button {
+  padding: 14px 26px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: #1e90ff;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#field {
+  position: relative;
+  width: 90vw;
+  max-width: 360px;
+  height: 230px;
+  border: 3px solid white;
+  border-radius: 12px;
+  background: #1b5e20;
+  margin-top: 20px;
+}
+
+#goal {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 40px;
+  border: 3px solid white;
+}
+
+#ball {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 34px;
+  cursor: pointer;
+  transition: transform 0.8s ease;
+}
+
+#hint {
+  margin-top: 10px;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.firework {
+  position: absolute;
+  font-size: 22px;
+  animation: boom 2s ease-out forwards;
+}
+
+@keyframes boom {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- START -->
+<div id="start" class="screen">
+  <h1>Hey Paul ⚽💙</h1>
+  <h2>Ready for a quick match?</h2>
+  <button onclick="gameOn()">Tap to start</button>
+</div>
+
+<!-- GAME ON -->
+<div id="gameon" class="screen">
+  <h1>🎮 GAME ON 🎮</h1>
+</div>
+
+<!-- GAME -->
+<div id="game" class="screen">
+  <h2>Score the goal 🥅</h2>
+  <div id="field">
+    <div id="goal"></div>
+    <div id="ball" onclick="shoot()">⚽</div>
+  </div>
+  <div id="hint">⬆️ Tap the ball to SHOOT ⚽</div>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="screen">
+  <h1>GOALLLL! 🐐⚽</h1>
+  <h2>
+    Paul, the way you hit the goal,<br>
+    you hit my heart too 💙
+  </h2>
+  <h2>I love you endlessly 💌</h2>
+</div>
+
+<script>
+function gameOn() {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("gameon").style.display = "flex";
+
+  setTimeout(() => {
+    document.getElementById("gameon").style.display = "none";
+    document.getElementById("game").style.display = "flex";
+  }, 2000);
+}
+
+function shoot() {
+  const ball = document.getElementById("ball");
+  ball.style.transform = "translate(-50%, -150px)";
+
+  setTimeout(() => {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("final").style.display = "flex";
+    fireworks();
+  }, 900);
+}
+
+function fireworks() {
+  for (let i = 0; i < 30; i++) {
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.innerHTML = "🎆";
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 2000);
+  }
+}
+</script>
+
+</body>
+</html>
